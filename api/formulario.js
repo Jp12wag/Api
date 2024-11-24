@@ -52,16 +52,21 @@ app.get('/api/formulario', async (req, res) => {
 app.delete('/api/formulario/:id', async (req, res) => {
   const { id } = req.params;
 
+  // Verificar que el ID sea válido
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send('ID no válido.');
+  }
+
   try {
-      const result = await Formulario.findByIdAndDelete(id);
-      if (result) {
-          res.status(200).send('Formulario eliminado exitosamente.');
-      } else {
-          res.status(404).send('Formulario no encontrado.');
-      }
+    const result = await Formulario.findByIdAndDelete(id);
+    if (result) {
+      res.status(200).send('Formulario eliminado exitosamente.');
+    } else {
+      res.status(404).send('Formulario no encontrado.');
+    }
   } catch (error) {
-      console.error('Error al eliminar el formulario:', error);
-      res.status(500).send('Error al eliminar el formulario.');
+    console.error('Error al eliminar el formulario:', error);
+    res.status(500).send('Error al eliminar el formulario.');
   }
 });
 
