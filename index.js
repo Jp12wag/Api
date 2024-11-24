@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Conexión a la base de datos MongoDB
-mongoose.connect('mongodb://localhost:27017/conexionFormulario', {
+mongoose.connect('mongodb+srv://wagneralcantara36:HFiUvmjTGf7XqJPU@cluster0.6hmqy.mongodb.net/', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
