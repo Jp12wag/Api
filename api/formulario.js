@@ -8,10 +8,16 @@ const app = express();
 // Configurar CORS
 app.use(cors()); // Permite todos los orígenes. Puedes limitarlo a dominios específicos.
 app.use(express.json());
-app.options('*', cors());
+const corsOptions = {
+  origin: '*',  // Permite todos los orígenes
+  methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],  // Asegúrate de permitir DELETE
+  allowedHeaders: ['Content-Type', 'Authorization'],  // Permite los encabezados necesarios
+  preflightContinue: false,  // No pasar a la siguiente middleware
+  optionsSuccessStatus: 204, // Asegura que el servidor responda con un código exitoso para OPTIONS
+};
 
 // Conectar a MongoDB
-mongoose.connect(process.env.MONGO_URI ||  "mongodb+srv://wagneralcantara36:HFiUvmjTGf7XqJPU@cluster0.6hmqy.mongodb.net/" , {
+mongoose.connect(process.env.MONGO_URI || "mongodb+srv://wagneralcantara36:HFiUvmjTGf7XqJPU@cluster0.6hmqy.mongodb.net/", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -60,6 +66,7 @@ app.delete('/api/formulario/:id', async (req, res) => {
       res.status(200).send('Formulario eliminado exitosamente.');
     } else {
       res.status(404).send('Formulario no encontrado.');
+      console.log(id)
     }
   } catch (error) {
     console.error('Error al eliminar el formulario:', error);
