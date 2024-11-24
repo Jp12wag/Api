@@ -10,7 +10,7 @@ app.use(cors()); // Permite todos los orígenes. Puedes limitarlo a dominios esp
 app.use(express.json());
 
 // Conectar a MongoDB
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(process.env.MONGO_URI ||  "mongodb+srv://wagneralcantara36:HFiUvmjTGf7XqJPU@cluster0.6hmqy.mongodb.net/" , {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -51,14 +51,10 @@ app.get('/api/formulario', async (req, res) => {
 
 app.delete('/api/formulario/:id', async (req, res) => {
   const { id } = req.params;
-
-  // Verificar que el ID sea válido
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).send('ID no válido.');
-  }
+  const ObjectId = require('mongodb').ObjectId;
 
   try {
-    const result = await Formulario.findByIdAndDelete(id);
+    const result = await Formulario.findByIdAndDelete(ObjectId(id));
     if (result) {
       res.status(200).send('Formulario eliminado exitosamente.');
     } else {
