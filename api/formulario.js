@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 require('dotenv').config();
 
 // Conectar a MongoDB (usando la URI de MongoDB Atlas)

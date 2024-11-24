@@ -5,5 +5,11 @@
       "src": "api/formulario.js",
       "use": "@vercel/node"
     }
+  ],
+  "routes": [
+    {
+      "src": "/api/formulario",
+      "dest": "/api/formulario.js"
+    }
   ]
 }
