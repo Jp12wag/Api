@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 require('dotenv').config();
 
 // Conectar a MongoDB (usando la URI de MongoDB Atlas)
@@ -23,7 +22,7 @@ const Formulario = mongoose.model('Formulario', new mongoose.Schema({
 module.exports = async function handler(req, res) {
   if (req.method === 'POST') {
     const { nombre, email, mensaje } = req.body;
-
+    console.log(req.body)
     const nuevoFormulario = new Formulario({ nombre, email, mensaje });
 
     try {
