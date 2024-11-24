@@ -61,10 +61,9 @@ app.get('/api/formulario', async (req, res) => {
 
 app.delete('/api/formulario/:id', async (req, res) => {
   const { id } = req.params;
-  console.log(id); // Verificar si el ID se está recibiendo correctamente
 
   try {
-    const result = await Formulario.findByIdAndDelete(id);
+    const result = await Formulario.findByIdAndDelete(req.params.id);
     if (result) {
       res.status(200).send('Formulario eliminado exitosamente.');
     } else {
