@@ -52,10 +52,10 @@ app.get('/api/formulario', async (req, res) => {
 
 app.delete('/api/formulario/:id', async (req, res) => {
   const { id } = req.params;
-  const ObjectId = require('mongodb').ObjectId;
+  console.log(id)
 
   try {
-    const result = await Formulario.findByIdAndDelete(ObjectId(id));
+    const result = await Formulario.findByIdAndDelete(id);
     if (result) {
       res.status(200).send('Formulario eliminado exitosamente.');
     } else {
