@@ -1,13 +1,9 @@
-import mongoose from 'mongoose';
-import Cors from 'cors';
-
-// Middleware para CORS
-const cors = Cors({
-  methods: ['GET', 'POST', 'HEAD'],
-});
+const mongoose = require('mongoose');
+require('dotenv').config();
 
 // Conectar a MongoDB (usando la URI de MongoDB Atlas)
-const mongoURI = process.env.MONGO_URI || 'mongodb+srv://wagneralcantara36:HFiUvmjTGf7XqJPU@cluster0.6hmqy.mongodb.net/';
+const mongoURI = process.env.MONGO_URI||'mongodb+srv://wagneralcantara36:HFiUvmjTGf7XqJPU@cluster0.6hmqy.mongodb.net/';
+
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -22,22 +18,8 @@ const Formulario = mongoose.model('Formulario', new mongoose.Schema({
   mensaje: String
 }));
 
-// Middleware para manejar CORS
-const runMiddleware = (req, res, fn) =>
-  new Promise((resolve, reject) => {
-    fn(req, res, (result) => {
-      if (result instanceof Error) {
-        return reject(result);
-      }
-      return resolve(result);
-    });
-  });
-
-// Exportar la función que manejará las solicitudes HTTP
-export default async function handler(req, res) {
-  // CORS
-  await runMiddleware(req, res, cors);
-
+// Manejar la solicitud HTTP
+module.exports = async function handler(req, res) {
   if (req.method === 'POST') {
     const { nombre, email, mensaje } = req.body;
 
