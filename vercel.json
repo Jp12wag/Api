@@ -1,6 +1,9 @@
 {
-    "env": {
-      "MONGO_URI": "mongodb+srv://wagneralcantara36:HFiUvmjTGf7XqJPU@cluster0.6hmqy.mongodb.net/"
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/formulario.js",
+      "use": "@vercel/node"
     }
-  }
-  
+  ]
+}
