@@ -17,7 +17,7 @@ const corsOptions = {
 };
 // Configura CORS con las opciones
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); 
+app.options('*', cors(corsOptions));
 
 // Conectar a MongoDB
 mongoose.connect(process.env.MONGO_URI || "mongodb+srv://wagneralcantara36:HFiUvmjTGf7XqJPU@cluster0.6hmqy.mongodb.net/", {
@@ -61,7 +61,7 @@ app.get('/api/formulario', async (req, res) => {
 
 app.delete('/api/formulario/:id', async (req, res) => {
   const { id } = req.params;
-  console.log(id)
+  console.log(id); // Verificar si el ID se está recibiendo correctamente
 
   try {
     const result = await Formulario.findByIdAndDelete(id);
@@ -69,13 +69,13 @@ app.delete('/api/formulario/:id', async (req, res) => {
       res.status(200).send('Formulario eliminado exitosamente.');
     } else {
       res.status(404).send('Formulario no encontrado.');
-      console.log(id)
     }
   } catch (error) {
     console.error('Error al eliminar el formulario:', error);
     res.status(500).send('Error al eliminar el formulario.');
   }
 });
+
 
 // Configurar puerto
 const port = process.env.PORT || 3000;
