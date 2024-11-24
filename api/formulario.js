@@ -8,6 +8,7 @@ const app = express();
 // Configurar CORS
 app.use(cors()); // Permite todos los orígenes. Puedes limitarlo a dominios específicos.
 app.use(express.json());
+app.options('*', cors());
 
 // Conectar a MongoDB
 mongoose.connect(process.env.MONGO_URI ||  "mongodb+srv://wagneralcantara36:HFiUvmjTGf7XqJPU@cluster0.6hmqy.mongodb.net/" , {
