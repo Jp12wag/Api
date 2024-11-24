@@ -15,6 +15,9 @@ const corsOptions = {
   preflightContinue: false,  // No pasar a la siguiente middleware
   optionsSuccessStatus: 204, // Asegura que el servidor responda con un código exitoso para OPTIONS
 };
+// Configura CORS con las opciones
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); 
 
 // Conectar a MongoDB
 mongoose.connect(process.env.MONGO_URI || "mongodb+srv://wagneralcantara36:HFiUvmjTGf7XqJPU@cluster0.6hmqy.mongodb.net/", {
