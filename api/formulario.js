@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 // Conectar a MongoDB (usando la URI de MongoDB Atlas)
-const mongoURI = process.env.MONGO_URI||'mongodb+srv://wagneralcantara36:HFiUvmjTGf7XqJPU@cluster0.6hmqy.mongodb.net/';
+const mongoURI = process.env.MONGO_URI || 'mongodb+srv://wagneralcantara36:HFiUvmjTGf7XqJPU@cluster0.6hmqy.mongodb.net/';
 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
